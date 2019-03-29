@@ -1,0 +1,25 @@
+Estas encargado de crear una aplicacion que se encargara' de ingresar datos al 
+padron electoral del INE. 
+
+************** Pantalla 1: ************** - Un listado en forma de tabla con 
+los datos: Nombre, Apellido Paterno, Apellido materno,Sexo, Estado de nacimiento
+(Jalisco. por ejemplo), ciudad, Fecha de nacimiento, Edad ( Calculada a partir 
+de fecha de nacimiento) - Se pueden editar datos de un ciudadano con un boton 
+de editar al final de cada fila. - Se puede eliminar un ciudadano de la lista
+- Aparte de la tabla, Un boton para agregar un nuevo ciudadano ( Ver pantalla 2)
+
+
+ ************** Pantalla 2: ************** - Es un formulario con: Nombre Apellido 
+ Paterno Apellido materno Sexo ( <input type="radio" > con opciones de 
+ Masculino / Femenino ) Estado de nacimiento ( Lista desplegable, <select> ) 
+ Ciudad Fecha de nacimiento ( calendario, no es necesario, pero se veria bien 
+ si se usa uno). Recomendable guardar como timestamp similar a lo que da Date.now() 
+
+- Un boton de Guardar ( Valida que todos los campos hayan sido llenados, 
+  en caso contrario despliega un mensaje de error) - Un boton de 
+  Cancelar ( Regresa a la lista de Pantalla 1) 
+
+
+************** Pantalla 3: ***************** Similar a Pantall 2, 
+pero es la vista de edicion de un ciudadano
+
