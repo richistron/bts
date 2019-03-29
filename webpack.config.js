@@ -1,8 +1,12 @@
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: './src/app.js',
+  output: {
+    path: __dirname + '/dist',
+    filename: 'bundle-[hash].js'
+  },
   module: {
     rules: [
       {
@@ -16,5 +20,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin()
+  ]
 }
