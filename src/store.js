@@ -5,7 +5,6 @@ import {fromJS} from 'immutable';
 
 const reducers = combineReducers({
   foo: () => fromJS({foo: true}),
-  bar: () => fromJS({bar: true})
 });
 
 const store = createStore(
