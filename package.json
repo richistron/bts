@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack --config=webpack.config.js",
     "serve": "webpack-dev-server --config=webpack.config.js --port 4000",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "eslint": "^5.15.3",
     "eslint-plugin-react": "^7.12.4",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^6.0.1",

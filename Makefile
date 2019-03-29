@@ -1,5 +1,7 @@
 pack:
 	rm -rf dist
+	npm run lint
+	npm run test
 	npm start
 	docker build -t bts .
 
