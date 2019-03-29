@@ -12,3 +12,9 @@ stop:
 push: pack
 	docker tag bts registry.richistron.com/bts
 	docker push registry.richistron.com/bts
+
+install:
+	nvm install
+	nvm use
+	npm i -g yarn
+	yarn
