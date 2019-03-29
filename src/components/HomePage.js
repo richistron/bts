@@ -1,10 +1,17 @@
-import React, {useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
+import Services from '../lib/Services';
 import Context from '../Context';
 
-
 const HomePage = () => {
-  const context = useContext(Context);
-  console.log('context',  context);
+
+  const {dispatch} = useContext(Context);
+
+  useEffect(() => {
+    const options = {method: 'get', resource: 'users'};
+    const cb = users => dispatch({type: 'ADD_USERS', users});
+    Services(options).then(cb);
+  }, []);
+
   return (
     <div>
       Home page
