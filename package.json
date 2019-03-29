@@ -4,6 +4,7 @@
   "description": "React single page app",
   "main": "index.js",
   "scripts": {
+    "start": "webpack --config=webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/richistron/bts/issues"
   },
-  "homepage": "https://github.com/richistron/bts#readme"
+  "homepage": "https://github.com/richistron/bts#readme",
+  "dependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
 }
