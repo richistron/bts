@@ -22,6 +22,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    // https://github.com/jantimon/html-webpack-plugin#options
+    new HtmlWebpackPlugin({
+      title: 'INE'
+    }),
   ]
 }
