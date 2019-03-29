@@ -1,7 +1,5 @@
 pack:
 	rm -rf dist
-	npm run lint
-	npm run test
 	npm start
 	docker build -t bts .
 
@@ -15,8 +13,8 @@ push: pack
 	docker tag bts registry.richistron.com/bts
 	docker push registry.richistron.com/bts
 
-install:
-	nvm install
-	nvm use
-	npm i -g yarn
-	yarn
+lint:
+		npm run lint
+
+test:
+	npm run test
