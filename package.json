@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "React single page app",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "webpack --config=webpack.config.js",
     "serve": "webpack-dev-server --config=webpack.config.js --port 4000",
