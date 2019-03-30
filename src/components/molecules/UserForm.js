@@ -18,6 +18,10 @@ const UserForm = props => {
     return true;
   };
 
+  const isPristine = () => {
+    return isObjectEqual({...state.forms, id: props.user.id}, props.user);
+  };
+
   const saveForm = event => {
     event.preventDefault();
     if (!isObjectEqual(state.forms, props.user)) {
@@ -102,7 +106,7 @@ const UserForm = props => {
         <div className={'actions'}>
           <div className='col-lg' role='group'>
             <button
-              disabled={!isValidForm()}
+              disabled={isPristine() || !isValidForm()}
               type='submit'
               className='btn btn-success'>Guardar</button>
 
