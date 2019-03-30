@@ -7,10 +7,8 @@ import Anchor from './Anchor';
 
 const UserDetail = props => {
   const {match: {params: {id, action}}} = props;
-
   const {state} = React.useContext(Context);
-
-  const user = state.getIn(['users', id], null);
+  const user = state.users[id + ''] || {};
 
   return user ? (
     <>

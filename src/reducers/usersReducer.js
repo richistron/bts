@@ -1,3 +1,4 @@
+const initialState = {};
 
 const addUsers = users => {
   const state = {};
@@ -10,7 +11,7 @@ const addUsers = users => {
 
 const usersReducer = (state, action) => {
   if (!state) {
-    return {};
+    return initialState;
   }
 
   switch(action.type) {
@@ -18,7 +19,7 @@ const usersReducer = (state, action) => {
       return addUsers(action.users);
 
     default:
-      return {};
+      return state;
   }
 };
 

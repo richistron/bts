@@ -17,21 +17,21 @@ const UsersTable = props => {
             </tr>
           </thead>
           <tbody>
-            {props.users.toList().map(user => {
+            {Object.values(props.users).map(user => {
               return (
-                <tr key={user.get('id')}>
-                  <td>{`${user.get('apellido_paterno')} ${user.get('apellido_materno')}`}</td>
-                  <td>{user.get('nombre')}</td>
-                  <td>{user.get('sexo')}</td>
-                  <td>{`${user.get('ciudad_de_nacimiento')}, ${user.get('estado_de_nacimiento')}. ${user.get('fecha_de_nacimiento')}`}</td>
+                <tr key={user.id}>
+                  <td>{`${user.apellido_paterno} ${user.apellido_materno}`}</td>
+                  <td>{user.nombre}</td>
+                  <td>{user.sexo}</td>
+                  <td>{`${user.ciudad_de_nacimiento}, ${user.estado_de_nacimiento}. ${user.fecha_de_nacimiento}`}</td>
                   <td>
-                    <Anchor action={'view'} id={user.get('id')} resource={'users'} text={'Ver'}/>
+                    <Anchor action={'view'} id={user.id} resource={'users'} text={'Ver'}/>
                     {' | '}
-                    <Anchor action={'edit'} id={user.get('id')} resource={'users'} text={'Editar'}/>
+                    <Anchor action={'edit'} id={user.id} resource={'users'} text={'Editar'}/>
                   </td>
                 </tr>
               );
-            }).toArray()}
+            })}
           </tbody>
         </table>
       </div>

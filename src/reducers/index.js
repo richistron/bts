@@ -1,12 +1,13 @@
 import usersReducer from './usersReducer';
-import sessionReducer from './sessionReducer';
-import {fromJS} from 'immutable';
+import formsReducer from './formsReducer';
+import uiReducer from './uiReducer';
 
-const reducer = (state, action) => {
-  return fromJS({
-    users: usersReducer(state, action),
-    session: sessionReducer(state, action),
-  });
+const reducer = (state = {}, action) => {
+  return {
+    users: usersReducer(state.users || null, action),
+    forms: formsReducer(state.forms || null, action),
+    ui: uiReducer(state.ui || null, action),
+  };
 };
 
 export const INITIAL_STATE = reducer();
