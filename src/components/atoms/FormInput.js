@@ -14,23 +14,22 @@ const FormInput = props => {
   }, []);
 
   return (
-    <div className={`form-group ${props.type === 'radio' ? 'form-check' : ''}`}>
+    <div className={'form-group'}>
 
-      {( props.type !== 'radio' && props.label ) &&
+      {props.label &&
       <label>{props.label}</label>
       }
 
-      {(props.type === 'text' || props.type === 'radio') &&
+      {props.type === 'text' &&
       <input
-        className={`${props.type === 'radio' ? 'form-check-input' : 'form-control'} ${props.error ? 'is-invalid' : ''}`}
+        className={`form-control ${props.error ? 'is-invalid' : ''}`}
         name={props.name}
         placeholder={props.placeholder}
         type={props.type || 'text'}
-        value={props.type === 'radio' ? props.defaultValue : state.value}
-        checked={props.type === 'radio' && state.checked}
+        value={state.value}
+        checked={state.checked}
         onChange={({target}) => {
-          setState({checked: true});
-          dispatch({type: 'FORM_CHANGE', value: props.type === 'radio' ? props.defaultValue : target.value, field: props.name});
+          dispatch({type: 'FORM_CHANGE', value: target.value, field: props.name});
         }}
       />
       }
@@ -51,11 +50,6 @@ const FormInput = props => {
           <option key={option.value} value={option.value}>{option.text}</option>
         ))}
       </select>
-      }
-
-
-      {( props.type === 'radio' && props.label ) &&
-      <label className={'form-check-label'}>{props.label}</label>
       }
     </div>
   );
