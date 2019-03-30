@@ -1,8 +1,8 @@
 import React from 'react';
 import Context from '../Context';
-import {Link} from 'react-router-dom';
 import {fromJS} from 'immutable';
 import UsersTable from './UsersTable';
+import Anchor from './Anchor';
 
 const fullName = user => `${ user.get('nombre') } ${ user.get('apellido_paterno') } ${ user.get('apellido_materno') }`;
 
@@ -21,9 +21,7 @@ const UserListPage = () => {
             return (
               <li key={user.get('id')} className='list-group-item'>
                 &#x2B51;
-                <Link to={'/users/' + user.get('id') + '/view'}>
-                  {fullName(user)}
-                </Link>
+                <Anchor resource={'users'} id={user.get('id')} action={'view'} text={fullName(user)}/>
               </li>
             );
           }).toArray()}

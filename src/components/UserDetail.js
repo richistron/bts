@@ -1,8 +1,9 @@
 import React from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Context from '../Context';
 import propTypes from 'prop-types';
 import UserForm from './UserForm';
+import Anchor from './Anchor';
 
 const UserDetail = props => {
   const {match: {params: {id, action}}} = props;
@@ -14,9 +15,7 @@ const UserDetail = props => {
   return user ? (
     <>
       <h6>
-        <Link to={'/'}>
-          {'< Regresar a lista de usuarios'}
-        </Link>
+        <Anchor action={'home'} resource={'users'} text={'< Regresar a lista de usuarios'}/>
       </h6>
 
       <UserForm

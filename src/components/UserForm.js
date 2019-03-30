@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import FormInput from './FormInput';
+import Anchor from './Anchor';
 
 const UserForm = props => (
   <form>
@@ -68,8 +69,7 @@ const UserForm = props => (
       {props.action === 'view' &&
       <div className={'actions'}>
         <div className='col-lg' role='group'>
-          <button type='button' className='btn btn-info'>Editar</button>
-          <button type='button' className='btn btn-danger'>Eliminar</button>
+          <Anchor className={'btn btn-info'} action={'edit'} id={props.user.get('id')} resource={'users'} text={'Editar'}/>
         </div>
       </div>
       }
@@ -77,9 +77,10 @@ const UserForm = props => (
       {props.action === 'edit' &&
       <div className={'actions'}>
         <div className='col-lg' role='group'>
-          <button type='button' className='btn btn-success'>Guardar</button>
-          <button type='button' className='btn btn-danger'>Eliminar</button>
-          <button type='button' className='btn btn-secondary'>Cancelar</button>
+          {/*<button type='button' className='btn btn-success'>Guardar</button>*/}
+          {/*<button type='button' className='btn btn-danger'>Eliminar</button>*/}
+          {/*<button type='button' className='btn btn-secondary'>Cancelar</button>*/}
+          <Anchor className={'btn btn-secondary'} action={'view'} id={props.user.get('id')} resource={'users'} text={'Cancelar'}/>
         </div>
       </div>
       }

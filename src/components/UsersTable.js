@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import Anchor from './Anchor';
 
 const UsersTable = props => {
   return (
@@ -25,9 +25,9 @@ const UsersTable = props => {
                   <td>{user.get('sexo')}</td>
                   <td>{`${user.get('ciudad_de_nacimiento')}, ${user.get('estado_de_nacimiento')}. ${user.get('fecha_de_nacimiento')}`}</td>
                   <td>
-                    <Link to={'/users/' + user.get('id') + '/view'}>Ver</Link>
+                    <Anchor action={'view'} id={user.get('id')} resource={'users'} text={'Ver'}/>
                     {' | '}
-                    <Link to={'/users/' + user.get('id') + '/edit'}>Editar</Link>
+                    <Anchor action={'edit'} id={user.get('id')} resource={'users'} text={'Editar'}/>
                   </td>
                 </tr>
               );
