@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import UserForm from './UserForm';
 import Anchor from './Anchor';
 
-const UserDetail = props => {
+const UserDetailPage = props => {
   const {match: {params: {id, action}}} = props;
   const {state} = React.useContext(Context);
   const user = state.users[id + ''] || null;
@@ -27,7 +27,7 @@ const UserDetail = props => {
   ) : null;
 };
 
-UserDetail.propTypes = {
+UserDetailPage.propTypes = {
   match: propTypes.shape({
     params: propTypes.shape({
       id: propTypes.string
@@ -35,4 +35,4 @@ UserDetail.propTypes = {
   })
 };
 
-export default withRouter(UserDetail);
+export default withRouter(UserDetailPage);

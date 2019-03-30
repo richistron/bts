@@ -5,10 +5,10 @@ import Anchor from './Anchor';
 import Context from '../Context';
 
 const UserForm = props => {
-  const {state} = React.useContext(Context);
+  const {state, dispatch} = React.useContext(Context);
 
   const saveForm = () => {
-    console.log(state.forms);
+    dispatch({type: 'UPDATE_USER', user: {...state.forms, id: props.user.id}});
   };
 
   return (

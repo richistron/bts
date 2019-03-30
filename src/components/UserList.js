@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Anchor from './Anchor';
 
-const UsersTable = props => {
+const UserList = props => {
   return (
     <div className={'col-md-10'}>
       <div className={'row'}>
@@ -45,8 +45,8 @@ const UsersTable = props => {
   );
 };
 
-UsersTable.propTypes = {
+UserList.propTypes = {
   users: propTypes.object.isRequired,
 };
 
-export default UsersTable;
+export default UserList;

@@ -1,5 +1,8 @@
-const initialState = {
-};
+import superStorage from '../lib/superStorage';
+
+const set = superStorage('ui', 'set');
+const get = superStorage('ui', 'get');
+const initialState = get() || {};
 
 const uiReducer = (state, action) => {
   if (!state) {
@@ -8,10 +11,10 @@ const uiReducer = (state, action) => {
 
   switch (action.type) {
     case 'TOGGLE_TABLE_VIEW': {
-      return {
+      return set({
         ...state,
         tableViewOn: action.val
-      };
+      });
     }
 
     default:

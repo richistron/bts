@@ -1,11 +1,11 @@
 import React from 'react';
 import Context from '../Context';
-import UsersTable from './UsersTable';
+import UserList from './UserList';
 import Anchor from './Anchor';
 
 const fullName = user => `${user.nombre} ${user.apellido_paterno} ${user.apellido_materno}`;
 
-const UserListPage = () => {
+const HomePage = () => {
   const {state: globalState, dispatch} = React.useContext(Context);
   const users = globalState.users || {};
   const ui = globalState.ui || {};
@@ -14,7 +14,7 @@ const UserListPage = () => {
   return (
     <div className={'row'}>
       {ui.tableViewOn ?
-        <UsersTable users={users} />
+        <UserList users={users} />
         :
         <ul className='col-md-10 list-group text-center'>
           {Object.values(users).map( user => {
@@ -44,4 +44,4 @@ const UserListPage = () => {
   );
 };
 
-export default UserListPage;
+export default HomePage;

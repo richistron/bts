@@ -1,4 +1,5 @@
 import USERS from '../lib/USERS';
+import superStorage from '../lib/superStorage';
 
 
 const addUsers = users => {
@@ -10,7 +11,14 @@ const addUsers = users => {
   return state;
 };
 
-const initialState = addUsers(USERS);
+const updateUser = (state, user) => {
+  state[user.id + ''] = user;
+  return state;
+};
+
+const get = superStorage('users', 'get');
+const set = superStorage('users', 'set');
+const initialState =  get() ? get() : set(addUsers(USERS));
 
 const usersReducer = (state, action) => {
   if (!state) {
@@ -19,7 +27,10 @@ const usersReducer = (state, action) => {
 
   switch(action.type) {
     case 'ADD_USERS':
-      return addUsers(action.users);
+      return set(addUsers(action.users));
+
+    case 'UPDATE_USER':
+      return set(updateUser(state, action.user))
 
     default:
       return state;
