@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import UserForm from './UserForm';
 
 const UserDetail = props => {
-  const {match: {params: {id}}} = props;
+  const {match: {params: {id, action}}} = props;
 
   const {state} = React.useContext(Context);
 
@@ -20,8 +20,8 @@ const UserDetail = props => {
       </h6>
 
       <UserForm
-        action={'view'}
-        disabled
+        action={action}
+        disabled={action === 'view'}
         user={user}
       />
     </>

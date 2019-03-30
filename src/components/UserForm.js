@@ -65,13 +65,24 @@ const UserForm = props => (
         />
       </fieldset>
 
+      {props.action === 'view' &&
       <div className={'actions'}>
         <div className='col-lg' role='group'>
-          <button type='button' className='btn btn-success'>Guardar</button>
-          <button type='button' className='btn btn-secondary'>Cancelar</button>
+          <button type='button' className='btn btn-info'>Editar</button>
           <button type='button' className='btn btn-danger'>Eliminar</button>
         </div>
       </div>
+      }
+
+      {props.action === 'edit' &&
+      <div className={'actions'}>
+        <div className='col-lg' role='group'>
+          <button type='button' className='btn btn-success'>Guardar</button>
+          <button type='button' className='btn btn-danger'>Eliminar</button>
+          <button type='button' className='btn btn-secondary'>Cancelar</button>
+        </div>
+      </div>
+      }
 
     </div>
   </form>
@@ -80,7 +91,7 @@ const UserForm = props => (
 UserForm.propTypes = {
   user: propTypes.object.isRequired,
   disabled: propTypes.bool.isRequired,
-  action: propTypes.oneOf(['view']),
+  action: propTypes.oneOf(['view', 'edit']),
 };
 
 export default UserForm;

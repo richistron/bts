@@ -24,10 +24,10 @@ const Layout = () => {
   return (
     <div className={'container'} style={{paddingTop: '25px'}}>
       <Context.Provider value={context}>
-        <Router>
+        <Router basename={'/'}>
           {/*<Navigation />*/}
           <Route exact path='/' component={UserListPage} />
-          <Route path='/users/:id' component={UserDetail} />
+          <Route path='/users/:id/:action' component={UserDetail} />
         </Router>
       </Context.Provider>
     </div>
