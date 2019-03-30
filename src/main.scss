@@ -1,2 +1,10 @@
 //TODO, add styles
 @import '~bootstrap/scss/bootstrap';
+
+.actions {
+  @extend .row;
+  @extend .text-right;
+  button {
+    margin-left: 15px;
+  }
+}

@@ -15,16 +15,15 @@ const UserDetail = props => {
     <>
       <h6>
         <Link to={'/'}>
-          Inico
+          {'< Regresar a lista de usuarios'}
         </Link>
       </h6>
-      <div className='jumbotron'>
-        <UserForm
-          action={'view'}
-          disabled
-          user={user}
-        />
-      </div>
+
+      <UserForm
+        action={'view'}
+        disabled
+        user={user}
+      />
     </>
   ) : null;
 };
