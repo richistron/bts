@@ -1,7 +1,6 @@
 import superStorage from '../lib/superStorage';
 
-const set = superStorage('ui', 'set');
-const get = superStorage('ui', 'get');
+const {get, set} = superStorage('ui');
 const initialState = get() || {};
 
 const uiReducer = (state, action) => {

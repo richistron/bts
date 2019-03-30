@@ -3,17 +3,31 @@ import propTypes from 'prop-types';
 import FormInput from '../atoms/FormInput';
 import Anchor from '../atoms/Anchor';
 import Context from '../../Context';
+import isObjectEqual from '../../lib/isObjectEqual';
+import isEmpty from '../../lib/isEmpty';
 
 const UserForm = props => {
   const {state, dispatch} = React.useContext(Context);
 
-  const saveForm = () => {
-    dispatch({type: 'UPDATE_USER', user: {...state.forms, id: props.user.id}});
+  const isValidForm = () => {
+    for (let key in state.forms) {
+      if (isEmpty(state.forms[key])) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const saveForm = event => {
+    event.preventDefault();
+    if (!isObjectEqual(state.forms, props.user)) {
+      dispatch({type: 'UPDATE_USER', user: {...state.forms, id: props.user.id}});
+    }
   };
 
   return (
 
-    <form name={'users'}>
+    <form name={'users'} onSubmit={saveForm}>
       <div className={'jumbotron'}>
         <fieldset
           disabled={props.disabled}
@@ -23,6 +37,7 @@ const UserForm = props => {
             name={'nombre'}
             placeholder={'Nombre'}
             type={'text'}
+            error={isEmpty(state.forms.nombre)}
             defaultValue={props.user.nombre || ''}
           />
 
@@ -87,8 +102,8 @@ const UserForm = props => {
         <div className={'actions'}>
           <div className='col-lg' role='group'>
             <button
-              onClick={saveForm}
-              type='button'
+              disabled={!isValidForm()}
+              type='submit'
               className='btn btn-success'>Guardar</button>
 
             {/*<button type='button' className='btn btn-danger'>Eliminar</button>*/}

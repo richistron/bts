@@ -18,7 +18,7 @@ const FormInput = props => {
       }
 
       <input
-        className='form-control'
+        className={`form-control ${props.error ? 'is-invalid' : ''}`}
         name={props.name}
         placeholder={props.placeholder}
         type={props.type || 'text'}
@@ -39,6 +39,7 @@ FormInput.propTypes = {
   name: propTypes.string.isRequired,
   placeholder: propTypes.string,
   type: propTypes.string,
+  error: propTypes.bool,
 };
 
 export default FormInput;

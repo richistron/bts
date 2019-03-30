@@ -1,19 +1,14 @@
-const superStorage = (resourse, method) => {
-  switch (method) {
-    case 'set':
-      return (obj) => {
-        localStorage.setItem(resourse, JSON.stringify(obj));
-        return obj;
-      };
+const superStorage = (resource) => {
+  return {
+    set: (obj) => {
+      localStorage.setItem(resource, JSON.stringify(obj));
+      return obj;
+    },
 
-    case 'get':
-      return () => {
-        return localStorage.getItem(resourse) ? JSON.parse(localStorage.getItem(resourse)) : null;
-      };
-
-    default:
-      throw new Error('invalid method');
-  }
+    get: () => {
+      return localStorage.getItem(resource) ? JSON.parse(localStorage.getItem(resource)) : null;
+    },
+  };
 };
 
 export default superStorage;
