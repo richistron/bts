@@ -6,7 +6,6 @@ const FormInput = props => {
   const {dispatch} = React.useContext(Context);
   const [state, setState] = React.useState({
     value: props.defaultValue,
-    state: false,
   });
 
   React.useEffect(() => {
@@ -51,6 +50,30 @@ const FormInput = props => {
         ))}
       </select>
       }
+
+
+      {props.type === 'radio' &&
+      <>
+        {props.options && props.options.map(option => {
+          return (
+            <div key={option} className='form-check'>
+              <input
+                name={'radio1'}
+                className='form-check-input'
+                type='radio'
+                value={option}
+                onChange={({target}) => {
+                  dispatch({type: 'FORM_CHANGE', value: target.value, field: props.name});
+                  setState({value: target.value});
+                }}
+                checked={state.value === option}
+              />
+              <label className='form-check-label'>{option}</label>
+            </div>
+          );
+        })}
+      </>
+      }
     </div>
   );
 };
@@ -62,10 +85,7 @@ FormInput.propTypes = {
   placeholder: propTypes.string,
   type: propTypes.oneOf(['text', 'select', 'radio']),
   error: propTypes.bool,
-  options: propTypes.arrayOf(propTypes.shape({
-    value: propTypes.any,
-    text: propTypes.any,
-  })),
+  options: propTypes.array
 };
 
 export default FormInput;

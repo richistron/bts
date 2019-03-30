@@ -102,23 +102,14 @@ const UserForm = props => {
             defaultValue={props.user.ciudad_de_nacimiento || ''}
           />
 
-          <label>Sexo</label>
 
           <FormInput
-            label={'Masculino'}
+            label={'Sexo'}
             name={'sexo'}
             placeholder={'sexo'}
             type={'radio'}
-            defaultValue={'Masculino'}
-            checked
-          />
-
-          <FormInput
-            label={'Femenino'}
-            name={'sexo'}
-            placeholder={'sexo'}
-            type={'radio'}
-            defaultValue={'Femenino'}
+            options={['Femenino', 'Masculino']}
+            defaultValue={props.user.sexo || ''}
           />
         </fieldset>
 
