@@ -23,7 +23,13 @@ const UsersTable = props => {
                   <td>{`${user.apellido_paterno} ${user.apellido_materno}`}</td>
                   <td>{user.nombre}</td>
                   <td>{user.sexo}</td>
-                  <td>{`${user.ciudad_de_nacimiento}, ${user.estado_de_nacimiento}. ${user.fecha_de_nacimiento}`}</td>
+                  <td>
+                    {`
+                        ${user.ciudad_de_nacimiento},
+                        ${user.estado_de_nacimiento}.
+                        ${user.fecha_de_nacimiento}
+                    `}
+                  </td>
                   <td>
                     <Anchor action={'view'} id={user.id} resource={'users'} text={'Ver'}/>
                     {' | '}

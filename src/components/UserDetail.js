@@ -8,7 +8,7 @@ import Anchor from './Anchor';
 const UserDetail = props => {
   const {match: {params: {id, action}}} = props;
   const {state} = React.useContext(Context);
-  const user = state.users[id + ''] || {};
+  const user = state.users[id + ''] || null;
 
   return user ? (
     <>
@@ -16,11 +16,13 @@ const UserDetail = props => {
         <Anchor action={'home'} resource={'users'} text={'< Regresar a lista de usuarios'}/>
       </h6>
 
+      {user &&
       <UserForm
         action={action}
         disabled={action === 'view'}
         user={user}
       />
+      }
     </>
   ) : null;
 };

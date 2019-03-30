@@ -1,5 +1,4 @@
 const initialState = {
-  tableViewOn: false,
 };
 
 const uiReducer = (state, action) => {

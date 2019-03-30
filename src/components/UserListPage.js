@@ -6,9 +6,10 @@ import Anchor from './Anchor';
 const fullName = user => `${user.nombre} ${user.apellido_paterno} ${user.apellido_materno}`;
 
 const UserListPage = () => {
-  const {state, dispatch} = React.useContext(Context);
-  const users = state.users || {};
-  const ui = state.ui || {};
+  const {state: globalState, dispatch} = React.useContext(Context);
+  const users = globalState.users || {};
+  const ui = globalState.ui || {};
+  const [state, setState] = React.useState({checked: ui.tableViewOn || false});
 
   return (
     <div className={'row'}>
@@ -31,7 +32,11 @@ const UserListPage = () => {
         <input
           className='form-check-input'
           type='checkbox'
-          onChange={event => dispatch({type: 'TOGGLE_TABLE_VIEW', val: event.target.checked})}
+          checked={state.checked}
+          onChange={event => {
+            dispatch({type: 'TOGGLE_TABLE_VIEW', val: event.target.checked});
+            setState({checked: event.target.checked});
+          }}
         />
         <label>Vista Completa</label>
       </div>

@@ -1,4 +1,5 @@
-const initialState = {};
+import USERS from '../lib/USERS';
+
 
 const addUsers = users => {
   const state = {};
@@ -8,6 +9,8 @@ const addUsers = users => {
 
   return state;
 };
+
+const initialState = addUsers(USERS);
 
 const usersReducer = (state, action) => {
   if (!state) {

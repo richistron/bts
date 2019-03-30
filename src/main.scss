@@ -4,7 +4,7 @@
 .actions {
   @extend .row;
   @extend .text-right;
-  button {
+  button, a {
     margin-left: 15px;
   }
 }

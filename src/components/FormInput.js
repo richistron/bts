@@ -3,7 +3,13 @@ import propTypes from 'prop-types';
 import Context from '../Context';
 
 const FormInput = props => {
-  const {state, dispatch} = React.useContext(Context);
+  const {dispatch} = React.useContext(Context);
+  const [state, setState] = React.useState({value: props.defaultValue});
+
+  React.useEffect(() => {
+    dispatch({type: 'FORM_CHANGE', value: props.defaultValue, field: props.name});
+  }, []);
+
   return (
     <div className='form-group'>
 
@@ -14,10 +20,13 @@ const FormInput = props => {
       <input
         className='form-control'
         name={props.name}
-        onChange={val => console.log(val)}
         placeholder={props.placeholder}
         type={props.type || 'text'}
-        value={props.value || ''}
+        value={state.value}
+        onChange={({target}) => {
+          dispatch({type: 'FORM_CHANGE', value: target.value, field: props.name});
+          setState({value: target.value});
+        }}
       />
 
     </div>
@@ -25,11 +34,11 @@ const FormInput = props => {
 };
 
 FormInput.propTypes = {
-  placeholder: propTypes.string,
-  type: propTypes.string,
-  value: propTypes.string,
+  defaultValue: propTypes.string,
   label: propTypes.string,
   name: propTypes.string.isRequired,
+  placeholder: propTypes.string,
+  type: propTypes.string,
 };
 
 export default FormInput;
