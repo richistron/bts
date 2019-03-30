@@ -1,10 +1,10 @@
-import './../main.scss';
-import Context from '../Context';
-import HomePage from './HomePage';
+import '../../main.scss';
 import React, {useReducer} from 'react';
-import reducers, {INITIAL_STATE} from '../reducers';
 import {Route, HashRouter as Router} from 'react-router-dom';
-import UserDetailPage from './UserDetailPage';
+import Context from '../../Context';
+import reducers, {INITIAL_STATE} from '../../reducers';
+import HomePage from '../pages/HomePage';
+import UserDetailPage from '../pages/UserDetailPage';
 
 const Layout = () => {
   const [state, dispatch] = useReducer(reducers, INITIAL_STATE);

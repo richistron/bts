@@ -1,9 +1,9 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import Context from '../Context';
+import Context from '../../Context';
 import propTypes from 'prop-types';
-import UserForm from './UserForm';
-import Anchor from './Anchor';
+import UserForm from '../molecules/UserForm';
+import Anchor from '../atoms/Anchor';
 
 const UserDetailPage = props => {
   const {match: {params: {id, action}}} = props;

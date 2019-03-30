@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import Anchor from './Anchor';
+import Anchor from '../atoms/Anchor';
 
 const UserList = props => {
   return (

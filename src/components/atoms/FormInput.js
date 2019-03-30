@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import Context from '../Context';
+import Context from '../../Context';
 
 const FormInput = props => {
   const {dispatch} = React.useContext(Context);

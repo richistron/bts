@@ -1,8 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import FormInput from './FormInput';
-import Anchor from './Anchor';
-import Context from '../Context';
+import FormInput from '../atoms/FormInput';
+import Anchor from '../atoms/Anchor';
+import Context from '../../Context';
 
 const UserForm = props => {
   const {state, dispatch} = React.useContext(Context);

@@ -1,7 +1,7 @@
 import React from 'react';
-import Context from '../Context';
-import UserList from './UserList';
-import Anchor from './Anchor';
+import Context from '../../Context';
+import UserList from '../molecules/UserList';
+import Anchor from '../atoms/Anchor';
 
 const fullName = user => `${user.nombre} ${user.apellido_paterno} ${user.apellido_materno}`;
 
