@@ -5,13 +5,15 @@ import Anchor from '../atoms/Anchor';
 import Context from '../../Context';
 import isObjectEqual from '../../lib/isObjectEqual';
 import isEmpty from '../../lib/isEmpty';
+import ESTADOS_DE_MEXICO from '../../lib/ESTADOS_DE_MEXICO';
 
 const UserForm = props => {
-  const {state, dispatch} = React.useContext(Context);
+  const {state: globlaState, dispatch} = React.useContext(Context);
+  const [state, setState] = React.useState({showMessage: false});
 
   const isValidForm = () => {
-    for (let key in state.forms) {
-      if (isEmpty(state.forms[key])) {
+    for (let key in globlaState.forms) {
+      if (isEmpty(globlaState.forms[key])) {
         return false;
       }
     }
@@ -19,19 +21,28 @@ const UserForm = props => {
   };
 
   const isPristine = () => {
-    return isObjectEqual({...state.forms, id: props.user.id}, props.user);
+    return isObjectEqual({...globlaState.forms, id: props.user.id}, props.user);
   };
 
   const saveForm = event => {
     event.preventDefault();
-    if (!isObjectEqual(state.forms, props.user)) {
-      dispatch({type: 'UPDATE_USER', user: {...state.forms, id: props.user.id}});
+    if (!isObjectEqual(globlaState.forms, props.user)) {
+      dispatch({type: 'UPDATE_USER', user: {...globlaState.forms, id: props.user.id}});
+      setState({showMessage: true});
+      setTimeout(() => setState({showMessage: false}), 5000);
     }
   };
 
   return (
 
     <form name={'users'} onSubmit={saveForm}>
+      {state.showMessage &&
+      <div className='alert alert-success' role='alert'>
+        Los cambios fueron guardados
+      </div>
+      }
+
+
       <div className={'jumbotron'}>
         <fieldset
           disabled={props.disabled}
@@ -41,7 +52,7 @@ const UserForm = props => {
             name={'nombre'}
             placeholder={'Nombre'}
             type={'text'}
-            error={isEmpty(state.forms.nombre)}
+            error={isEmpty(globlaState.forms.nombre)}
             defaultValue={props.user.nombre || ''}
           />
 
@@ -50,6 +61,7 @@ const UserForm = props => {
             name={'apellido_paterno'}
             placeholder={'Appellido Paterno'}
             type={'text'}
+            error={isEmpty(globlaState.forms.apellido_paterno)}
             defaultValue={props.user.apellido_paterno || ''}
           />
 
@@ -58,15 +70,27 @@ const UserForm = props => {
             name={'apellido_materno'}
             placeholder={'Apellido Materno'}
             type={'text'}
+            error={isEmpty(globlaState.forms.apellido_materno)}
             defaultValue={props.user.apellido_materno || ''}
           />
 
           <FormInput
             label={'Fecha de Nacimiento'}
             name={'fecha_de_nacimiento'}
-            placeholder={'Fecha de Nacimiento'}
+            placeholder={'AAAA/MM/DD'}
             type={'text'}
+            error={isEmpty(globlaState.forms.fecha_de_nacimiento) || (globlaState.fecha_de_nacimiento && !globlaState.fecha_de_nacimiento.match(/\d\d\d\d\/\d\d?\/\d\d?/))}
             defaultValue={props.user.fecha_de_nacimiento || ''}
+          />
+
+          <FormInput
+            label={'Estado de Nacimiento'}
+            name={'estado_de_nacimiento'}
+            placeholder={'Estado de Nacimiento'}
+            type={'select'}
+            options={ESTADOS_DE_MEXICO.map(estado => ({value: estado, text: estado}))}
+            error={isEmpty(globlaState.forms.estado_de_nacimiento)}
+            defaultValue={props.user.estado_de_nacimiento || ''}
           />
 
           <FormInput
@@ -74,23 +98,27 @@ const UserForm = props => {
             name={'ciudad_de_nacimiento'}
             placeholder={'Ciudad de Nacimiento'}
             type={'text'}
+            error={isEmpty(globlaState.forms.ciudad_de_nacimiento)}
             defaultValue={props.user.ciudad_de_nacimiento || ''}
           />
 
+          <label>Sexo</label>
+
           <FormInput
-            label={'Estado de Nacimiento'}
-            name={'estado_de_nacimiento'}
-            placeholder={'Estado de Nacimiento'}
-            type={'text'}
-            defaultValue={props.user.estado_de_nacimiento || ''}
+            label={'Masculino'}
+            name={'sexo'}
+            placeholder={'sexo'}
+            type={'radio'}
+            defaultValue={'Masculino'}
+            checked
           />
 
           <FormInput
-            label={'sexo'}
+            label={'Femenino'}
             name={'sexo'}
             placeholder={'sexo'}
-            type={'text'}
-            defaultValue={props.user.sexo || ''}
+            type={'radio'}
+            defaultValue={'Femenino'}
           />
         </fieldset>
 

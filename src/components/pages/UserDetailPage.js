@@ -18,6 +18,7 @@ const UserDetailPage = props => {
 
       {user &&
       <UserForm
+        key={action}
         action={action}
         disabled={action === 'view'}
         user={user}
