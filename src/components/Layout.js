@@ -1,10 +1,10 @@
 import './../main.scss';
 import Context from '../Context';
-import HomePage from './HomePage';
+import UserListPage from './UserListPage';
 import Navigation from './Navigation';
 import React, {useReducer} from 'react';
 import reducers, {INITIAL_STATE} from '../reducers';
-import {Route, BrowserRouter as Router} from 'react-router-dom';
+import {Route, HashRouter as Router} from 'react-router-dom';
 
 const Layout = () => {
   const [state, dispatch] = useReducer(reducers, INITIAL_STATE);
@@ -18,7 +18,7 @@ const Layout = () => {
       <Context.Provider value={context}>
         <Router>
           <Navigation />
-          <Route exact path='' component={HomePage} />
+          <Route exact path='/' component={UserListPage} />
         </Router>
       </Context.Provider>
     </div>
