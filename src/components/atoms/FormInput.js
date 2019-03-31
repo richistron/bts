@@ -17,6 +17,7 @@ const FormInput = props => {
       <label>{props.label}</label>
       }
 
+      {props.type === 'text' &&
       <input
         className={`form-control ${props.error ? 'is-invalid' : ''}`}
         name={props.name}
@@ -28,7 +29,26 @@ const FormInput = props => {
           setState({value: target.value});
         }}
       />
+      }
 
+
+      {props.type === 'select' &&
+      <select
+        className={`form-control ${props.error ? 'is-invalid' : ''}`}
+        name={props.name}
+        placeholder={props.placeholder}
+        type={props.type || 'text'}
+        value={state.value}
+        onChange={({target}) => {
+          setState({value: target.value});
+          dispatch({type: 'FORM_CHANGE', value: target.value, field: props.name});
+        }}
+      >
+        {props.options.map(option => (
+          <option key={option.value} value={option.value}>{option.text}</option>
+        ))}
+      </select>
+      }
     </div>
   );
 };
@@ -40,6 +60,10 @@ FormInput.propTypes = {
   placeholder: propTypes.string,
   type: propTypes.string,
   error: propTypes.bool,
+  options: propTypes.arrayOf(propTypes.shape({
+    value: propTypes.any,
+    text: propTypes.string,
+  })),
 };
 
 export default FormInput;

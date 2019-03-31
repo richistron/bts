@@ -9,7 +9,6 @@ import ESTADOS_DE_MEXICO from '../../lib/ESTADOS_DE_MEXICO';
 import {withRouter} from 'react-router-dom';
 
 const UserForm = props => {
-  console.log('form')
   const {state: globalState, dispatch} = React.useContext(Context);
   const [state, setState] = React.useState({showMessage: false});
 
@@ -58,51 +57,51 @@ const UserForm = props => {
             defaultValue={props.user.nombre || ''}
           />
 
-          {/*<FormInput*/}
-            {/*label={'Apellido Paterno'}*/}
-            {/*name={'apellido_paterno'}*/}
-            {/*placeholder={'Appellido Paterno'}*/}
-            {/*type={'text'}*/}
-            {/*error={isEmpty(globalState.forms.apellido_paterno)}*/}
-            {/*defaultValue={props.user.apellido_paterno || ''}*/}
-          {/*/>*/}
+          <FormInput
+            label={'Apellido Paterno'}
+            name={'apellido_paterno'}
+            placeholder={'Appellido Paterno'}
+            type={'text'}
+            error={isEmpty(globalState.forms.apellido_paterno)}
+            defaultValue={props.user.apellido_paterno || ''}
+          />
 
-          {/*<FormInput*/}
-            {/*label={'Apellido Materno'}*/}
-            {/*name={'apellido_materno'}*/}
-            {/*placeholder={'Apellido Materno'}*/}
-            {/*type={'text'}*/}
-            {/*error={isEmpty(globalState.forms.apellido_materno)}*/}
-            {/*defaultValue={props.user.apellido_materno || ''}*/}
-          {/*/>*/}
+          <FormInput
+            label={'Apellido Materno'}
+            name={'apellido_materno'}
+            placeholder={'Apellido Materno'}
+            type={'text'}
+            error={isEmpty(globalState.forms.apellido_materno)}
+            defaultValue={props.user.apellido_materno || ''}
+          />
 
-          {/*<FormInput*/}
-            {/*label={'Fecha de Nacimiento'}*/}
-            {/*name={'fecha_de_nacimiento'}*/}
-            {/*placeholder={'AAAA/MM/DD'}*/}
-            {/*type={'text'}*/}
-            {/*error={isEmpty(globalState.forms.fecha_de_nacimiento) || (globalState.fecha_de_nacimiento && !globalState.fecha_de_nacimiento.match(/\d\d\d\d\/\d\d?\/\d\d?/))}*/}
-            {/*defaultValue={props.user.fecha_de_nacimiento || ''}*/}
-          {/*/>*/}
+          <FormInput
+            label={'Fecha de Nacimiento'}
+            name={'fecha_de_nacimiento'}
+            placeholder={'AAAA/MM/DD'}
+            type={'text'}
+            error={isEmpty(globalState.forms.fecha_de_nacimiento) || (globalState.fecha_de_nacimiento && !globalState.fecha_de_nacimiento.match(/\d\d\d\d\/\d\d?\/\d\d?/))}
+            defaultValue={props.user.fecha_de_nacimiento || ''}
+          />
 
-          {/*<FormInput*/}
-            {/*label={'Estado de Nacimiento'}*/}
-            {/*name={'estado_de_nacimiento'}*/}
-            {/*placeholder={'Estado de Nacimiento'}*/}
-            {/*type={'select'}*/}
-            {/*options={ESTADOS_DE_MEXICO.map(estado => ({value: estado, text: estado}))}*/}
-            {/*error={isEmpty(globalState.forms.estado_de_nacimiento)}*/}
-            {/*defaultValue={props.user.estado_de_nacimiento || ''}*/}
-          {/*/>*/}
+          <FormInput
+            label={'Estado de Nacimiento'}
+            name={'estado_de_nacimiento'}
+            placeholder={'Estado de Nacimiento'}
+            type={'select'}
+            options={ESTADOS_DE_MEXICO.map(estado => ({value: estado, text: estado}))}
+            error={isEmpty(globalState.forms.estado_de_nacimiento)}
+            defaultValue={props.user.estado_de_nacimiento || ''}
+          />
 
-          {/*<FormInput*/}
-            {/*label={'Ciudad de Nacimiento'}*/}
-            {/*name={'ciudad_de_nacimiento'}*/}
-            {/*placeholder={'Ciudad de Nacimiento'}*/}
-            {/*type={'text'}*/}
-            {/*error={isEmpty(globalState.forms.ciudad_de_nacimiento)}*/}
-            {/*defaultValue={props.user.ciudad_de_nacimiento || ''}*/}
-          {/*/>*/}
+          <FormInput
+            label={'Ciudad de Nacimiento'}
+            name={'ciudad_de_nacimiento'}
+            placeholder={'Ciudad de Nacimiento'}
+            type={'text'}
+            error={isEmpty(globalState.forms.ciudad_de_nacimiento)}
+            defaultValue={props.user.ciudad_de_nacimiento || ''}
+          />
 
 
           {/*<FormInput*/}
