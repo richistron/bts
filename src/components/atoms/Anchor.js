@@ -3,7 +3,13 @@ import propTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 const Anchor = props => {
-  const usersRoute = () => props.action === 'home' ? '/' : '/users/' + props.id + '/' + props.action;
+  const usersRoute = () => props.action === 'home' ?
+    '/'
+    :
+    props.action === 'new' ?
+      '/users/' + props.action
+      :
+      '/users/' + props.id + '/' + props.action;
   switch (props.resource) {
     case 'users':
       return (
@@ -22,7 +28,7 @@ const Anchor = props => {
 Anchor.propTypes = {
   resource: propTypes.oneOf(['users']),
   id: propTypes.oneOfType([propTypes.string, propTypes.number]),
-  action: propTypes.oneOf(['home', 'view', 'edit']),
+  action: propTypes.oneOf(['home', 'view', 'edit', 'new']),
   text: propTypes.string,
   className: propTypes.string,
 };

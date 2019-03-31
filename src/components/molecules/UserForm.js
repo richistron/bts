@@ -9,12 +9,13 @@ import ESTADOS_DE_MEXICO from '../../lib/ESTADOS_DE_MEXICO';
 import {withRouter} from 'react-router-dom';
 
 const UserForm = props => {
-  const {state: globlaState, dispatch} = React.useContext(Context);
+  console.log('form')
+  const {state: globalState, dispatch} = React.useContext(Context);
   const [state, setState] = React.useState({showMessage: false});
 
   const isValidForm = () => {
-    for (let key in globlaState.forms) {
-      if (isEmpty(globlaState.forms[key])) {
+    for (let key in globalState.forms) {
+      if (isEmpty(globalState.forms[key])) {
         return false;
       }
     }
@@ -22,13 +23,13 @@ const UserForm = props => {
   };
 
   const isPristine = () => {
-    return isObjectEqual({...globlaState.forms, id: props.user.id}, props.user);
+    return isObjectEqual({...globalState.forms, id: props.user.id}, props.user);
   };
 
   const saveForm = event => {
     event.preventDefault();
-    if (!isObjectEqual(globlaState.forms, props.user)) {
-      dispatch({type: 'UPDATE_USER', user: {...globlaState.forms, id: props.user.id}});
+    if (!isObjectEqual(globalState.forms, props.user)) {
+      dispatch({type: 'UPDATE_USER', user: {...globalState.forms, id: props.user.id}});
       setState({showMessage: true});
       setTimeout(() => setState({showMessage: false}), 5000);
     }
@@ -53,65 +54,65 @@ const UserForm = props => {
             name={'nombre'}
             placeholder={'Nombre'}
             type={'text'}
-            error={isEmpty(globlaState.forms.nombre)}
+            error={isEmpty(globalState.forms.nombre)}
             defaultValue={props.user.nombre || ''}
           />
 
-          <FormInput
-            label={'Apellido Paterno'}
-            name={'apellido_paterno'}
-            placeholder={'Appellido Paterno'}
-            type={'text'}
-            error={isEmpty(globlaState.forms.apellido_paterno)}
-            defaultValue={props.user.apellido_paterno || ''}
-          />
+          {/*<FormInput*/}
+            {/*label={'Apellido Paterno'}*/}
+            {/*name={'apellido_paterno'}*/}
+            {/*placeholder={'Appellido Paterno'}*/}
+            {/*type={'text'}*/}
+            {/*error={isEmpty(globalState.forms.apellido_paterno)}*/}
+            {/*defaultValue={props.user.apellido_paterno || ''}*/}
+          {/*/>*/}
 
-          <FormInput
-            label={'Apellido Materno'}
-            name={'apellido_materno'}
-            placeholder={'Apellido Materno'}
-            type={'text'}
-            error={isEmpty(globlaState.forms.apellido_materno)}
-            defaultValue={props.user.apellido_materno || ''}
-          />
+          {/*<FormInput*/}
+            {/*label={'Apellido Materno'}*/}
+            {/*name={'apellido_materno'}*/}
+            {/*placeholder={'Apellido Materno'}*/}
+            {/*type={'text'}*/}
+            {/*error={isEmpty(globalState.forms.apellido_materno)}*/}
+            {/*defaultValue={props.user.apellido_materno || ''}*/}
+          {/*/>*/}
 
-          <FormInput
-            label={'Fecha de Nacimiento'}
-            name={'fecha_de_nacimiento'}
-            placeholder={'AAAA/MM/DD'}
-            type={'text'}
-            error={isEmpty(globlaState.forms.fecha_de_nacimiento) || (globlaState.fecha_de_nacimiento && !globlaState.fecha_de_nacimiento.match(/\d\d\d\d\/\d\d?\/\d\d?/))}
-            defaultValue={props.user.fecha_de_nacimiento || ''}
-          />
+          {/*<FormInput*/}
+            {/*label={'Fecha de Nacimiento'}*/}
+            {/*name={'fecha_de_nacimiento'}*/}
+            {/*placeholder={'AAAA/MM/DD'}*/}
+            {/*type={'text'}*/}
+            {/*error={isEmpty(globalState.forms.fecha_de_nacimiento) || (globalState.fecha_de_nacimiento && !globalState.fecha_de_nacimiento.match(/\d\d\d\d\/\d\d?\/\d\d?/))}*/}
+            {/*defaultValue={props.user.fecha_de_nacimiento || ''}*/}
+          {/*/>*/}
 
-          <FormInput
-            label={'Estado de Nacimiento'}
-            name={'estado_de_nacimiento'}
-            placeholder={'Estado de Nacimiento'}
-            type={'select'}
-            options={ESTADOS_DE_MEXICO.map(estado => ({value: estado, text: estado}))}
-            error={isEmpty(globlaState.forms.estado_de_nacimiento)}
-            defaultValue={props.user.estado_de_nacimiento || ''}
-          />
+          {/*<FormInput*/}
+            {/*label={'Estado de Nacimiento'}*/}
+            {/*name={'estado_de_nacimiento'}*/}
+            {/*placeholder={'Estado de Nacimiento'}*/}
+            {/*type={'select'}*/}
+            {/*options={ESTADOS_DE_MEXICO.map(estado => ({value: estado, text: estado}))}*/}
+            {/*error={isEmpty(globalState.forms.estado_de_nacimiento)}*/}
+            {/*defaultValue={props.user.estado_de_nacimiento || ''}*/}
+          {/*/>*/}
 
-          <FormInput
-            label={'Ciudad de Nacimiento'}
-            name={'ciudad_de_nacimiento'}
-            placeholder={'Ciudad de Nacimiento'}
-            type={'text'}
-            error={isEmpty(globlaState.forms.ciudad_de_nacimiento)}
-            defaultValue={props.user.ciudad_de_nacimiento || ''}
-          />
+          {/*<FormInput*/}
+            {/*label={'Ciudad de Nacimiento'}*/}
+            {/*name={'ciudad_de_nacimiento'}*/}
+            {/*placeholder={'Ciudad de Nacimiento'}*/}
+            {/*type={'text'}*/}
+            {/*error={isEmpty(globalState.forms.ciudad_de_nacimiento)}*/}
+            {/*defaultValue={props.user.ciudad_de_nacimiento || ''}*/}
+          {/*/>*/}
 
 
-          <FormInput
-            label={'Sexo'}
-            name={'sexo'}
-            placeholder={'sexo'}
-            type={'radio'}
-            options={['Femenino', 'Masculino']}
-            defaultValue={props.user.sexo || ''}
-          />
+          {/*<FormInput*/}
+            {/*label={'Sexo'}*/}
+            {/*name={'sexo'}*/}
+            {/*placeholder={'sexo'}*/}
+            {/*type={'radio'}*/}
+            {/*options={['Femenino', 'Masculino']}*/}
+            {/*defaultValue={props.user.sexo || ''}*/}
+          {/*/>*/}
         </fieldset>
 
         {props.action === 'view' &&
@@ -157,7 +158,7 @@ const UserForm = props => {
 UserForm.propTypes = {
   user: propTypes.object.isRequired,
   disabled: propTypes.bool.isRequired,
-  action: propTypes.oneOf(['view', 'edit']),
+  action: propTypes.oneOf(['view', 'edit', 'new']),
   history: propTypes.shape({push: propTypes.func}),
 };
 

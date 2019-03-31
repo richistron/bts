@@ -39,6 +39,10 @@ const HomePage = () => {
           }}
         />
         <label>Vista Completa</label>
+
+        <div className={'row'}>
+          <Anchor resource={'users'} action={'new'} text={'Nuevo'} className={'btn btn-primary'}/>
+        </div>
       </div>
     </div>
   );

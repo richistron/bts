@@ -19,6 +19,7 @@ const Layout = () => {
         <Router basename={'/'}>
           {/*<Navigation />*/}
           <Route exact path='/' component={HomePage} />
+          <Route exact path='/users/:action' component={UserDetailPage} />
           <Route path='/users/:id/:action' component={UserDetailPage} />
         </Router>
       </div>

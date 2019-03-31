@@ -4,13 +4,14 @@ import Context from '../../Context';
 import propTypes from 'prop-types';
 import UserForm from '../molecules/UserForm';
 import Anchor from '../atoms/Anchor';
+import newUser from '../../lib/newUser';
 
 const UserDetailPage = props => {
   const {match: {params: {id, action}}} = props;
   const {state} = React.useContext(Context);
-  const user = state.users[id + ''] || null;
+  const user = state.users[id + ''] || newUser(state.users);
 
-  return user ? (
+  return (
     <>
       <h6>
         <Anchor action={'home'} resource={'users'} text={'< Regresar a lista de usuarios'}/>
@@ -25,7 +26,7 @@ const UserDetailPage = props => {
       />
       }
     </>
-  ) : null;
+  );
 };
 
 UserDetailPage.propTypes = {
