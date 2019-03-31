@@ -31,10 +31,17 @@ const UserForm = props => {
 
   const saveForm = event => {
     event.preventDefault();
+    
     if (!isObjectEqual(globalState.forms, props.user)) {
       dispatch({type: 'UPDATE_USER', user: {...globalState.forms, id: props.user.id}});
-      setState({showMessage: true});
-      setTimeout(() => setState({showMessage: false}), 5000);
+
+      if (props.action === 'new') {
+        props.history.push('/users/' + props.user.id + '/view');
+      }
+      else {
+        setState({showMessage: true});
+        setTimeout(() => setState({showMessage: false}), 5000);
+      }
     }
   };
 
@@ -157,10 +164,6 @@ const UserForm = props => {
             <button
               disabled={isPristine() || !isValidForm()}
               type='submit'
-              onClick={() => {
-                dispatch({type: 'UPDATE_USER', user: {...globalState.forms, id: props.user.id}});
-                props.history.push('/users/' + props.user.id + '/view');
-              }}
               className='btn btn-success'>Crear</button>
 
             <Anchor className={'btn btn-secondary'} action={'home'} resource={'users'} text={'Cancelar'}/>
