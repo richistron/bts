@@ -16,6 +16,16 @@ const updateUser = (state, user) => {
   return state;
 };
 
+const removeUser = (state, id) => {
+  const newState = {};
+  for (let key in state) {
+    if (state[key].id !== id) {
+      newState[key] = state[key];
+    }
+  }
+  return newState;
+};
+
 const {get, set} = superStorage('users');
 const initialState =  get() ? get() : set(addUsers(USERS));
 
@@ -30,6 +40,9 @@ const usersReducer = (state, action) => {
 
     case 'UPDATE_USER':
       return set(updateUser(state, action.user));
+
+    case 'REMOVE_USER':
+      return set(removeUser(state, action.id));
 
     default:
       return state;

@@ -6,6 +6,7 @@ import Context from '../../Context';
 import isObjectEqual from '../../lib/isObjectEqual';
 import isEmpty from '../../lib/isEmpty';
 import ESTADOS_DE_MEXICO from '../../lib/ESTADOS_DE_MEXICO';
+import {withRouter} from 'react-router-dom';
 
 const UserForm = props => {
   const {state: globlaState, dispatch} = React.useContext(Context);
@@ -117,6 +118,19 @@ const UserForm = props => {
         <div className={'actions'}>
           <div className='col-lg' role='group'>
             <Anchor className={'btn btn-info'} action={'edit'} id={props.user.id} resource={'users'} text={'Editar'}/>
+            <button
+              type='button'
+              className='btn btn-danger'
+              onClick={() => {
+                const sure = confirm('are you sure?');
+                if (sure) {
+                  dispatch({type: 'REMOVE_USER', id: props.user.id});
+                  props.history.push('/');
+                }
+              }}
+            >
+              Eliminar
+            </button>
           </div>
         </div>
         }
@@ -129,7 +143,6 @@ const UserForm = props => {
               type='submit'
               className='btn btn-success'>Guardar</button>
 
-            {/*<button type='button' className='btn btn-danger'>Eliminar</button>*/}
             {/*<button type='button' className='btn btn-secondary'>Cancelar</button>*/}
             <Anchor className={'btn btn-secondary'} action={'view'} id={props.user.id} resource={'users'} text={'Cancelar'}/>
           </div>
@@ -145,6 +158,7 @@ UserForm.propTypes = {
   user: propTypes.object.isRequired,
   disabled: propTypes.bool.isRequired,
   action: propTypes.oneOf(['view', 'edit']),
+  history: propTypes.shape({push: propTypes.func}),
 };
 
-export default UserForm;
+export default withRouter( UserForm );
