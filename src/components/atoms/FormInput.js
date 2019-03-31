@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Context from '../../Context';
 
+// TODO, refactor this component to be a higher order component
 const FormInput = props => {
   const {dispatch} = React.useContext(Context);
   const [state, setState] = React.useState({value: props.defaultValue});
@@ -22,7 +23,7 @@ const FormInput = props => {
         className={`form-control ${props.error ? 'is-invalid' : ''}`}
         name={props.name}
         placeholder={props.placeholder}
-        type={props.type || 'text'}
+        type={'text'}
         value={state.value}
         onChange={({target}) => {
           dispatch({type: 'FORM_CHANGE', value: target.value, field: props.name});
@@ -37,7 +38,7 @@ const FormInput = props => {
         className={`form-control ${props.error ? 'is-invalid' : ''}`}
         name={props.name}
         placeholder={props.placeholder}
-        type={props.type || 'text'}
+        type={'select'}
         value={state.value}
         onChange={({target}) => {
           setState({value: target.value});
@@ -48,6 +49,31 @@ const FormInput = props => {
           <option key={option.value} value={option.value}>{option.text}</option>
         ))}
       </select>
+      }
+
+      {props.type === 'radio' &&
+      <div>
+        {props.options.map(option => {
+          return (
+            <div key={option.value} className='form-check'>
+              <input
+                className='form-check-input'
+                type='radio'
+                name={props.name}
+                value={option.value}
+                checked={state.value === option.value}
+                onChange={({target}) => {
+                  setState({value: target.value});
+                  dispatch({type: 'FORM_CHANGE', value: target.value, field: props.name});
+                }}
+              />
+              <label className='form-check-label'>
+                {option.text}
+              </label>
+            </div>
+          );
+        })}
+      </div>
       }
     </div>
   );

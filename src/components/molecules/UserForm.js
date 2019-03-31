@@ -103,15 +103,14 @@ const UserForm = props => {
             defaultValue={props.user.ciudad_de_nacimiento || ''}
           />
 
-
-          {/*<FormInput*/}
-            {/*label={'Sexo'}*/}
-            {/*name={'sexo'}*/}
-            {/*placeholder={'sexo'}*/}
-            {/*type={'radio'}*/}
-            {/*options={['Femenino', 'Masculino']}*/}
-            {/*defaultValue={props.user.sexo || ''}*/}
-          {/*/>*/}
+          <FormInput
+            label={'Sexo'}
+            name={'sexo'}
+            placeholder={'sexo'}
+            type={'radio'}
+            options={[{value: 'M', text: 'Masculino'}, {value: 'H', text: 'Femenino'}]}
+            defaultValue={props.user.sexo || ''}
+          />
         </fieldset>
 
         {props.action === 'view' &&
