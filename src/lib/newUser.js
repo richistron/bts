@@ -6,7 +6,7 @@ const newUser = (users = {}) => {
   }
 
   return {
-    id: highest,
+    id: highest + 1,
     nombre: '',
     apellido_paterno: '',
     apellido_materno: '',

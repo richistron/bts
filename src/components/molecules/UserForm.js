@@ -12,6 +12,10 @@ const UserForm = props => {
   const {state: globalState, dispatch} = React.useContext(Context);
   const [state, setState] = React.useState({showMessage: false});
 
+  const isValidDate = (date = '') => {
+    return date.match(/\d\d\d\d\/\d\d?\/\d\d?/) !== null;
+  };
+
   const isValidForm = () => {
     for (let key in globalState.forms) {
       if (isEmpty(globalState.forms[key])) {
@@ -80,7 +84,7 @@ const UserForm = props => {
             name={'fecha_de_nacimiento'}
             placeholder={'AAAA/MM/DD'}
             type={'text'}
-            error={isEmpty(globalState.forms.fecha_de_nacimiento) || (globalState.fecha_de_nacimiento && !globalState.fecha_de_nacimiento.match(/\d\d\d\d\/\d\d?\/\d\d?/))}
+            error={isEmpty(globalState.forms.fecha_de_nacimiento) || !isValidDate(globalState.forms.fecha_de_nacimiento)}
             defaultValue={props.user.fecha_de_nacimiento || ''}
           />
 
@@ -142,12 +146,27 @@ const UserForm = props => {
               type='submit'
               className='btn btn-success'>Guardar</button>
 
-            {/*<button type='button' className='btn btn-secondary'>Cancelar</button>*/}
             <Anchor className={'btn btn-secondary'} action={'view'} id={props.user.id} resource={'users'} text={'Cancelar'}/>
           </div>
         </div>
         }
 
+        {props.action === 'new' &&
+        <div className={'actions'}>
+          <div className='col-lg' role='group'>
+            <button
+              disabled={isPristine() || !isValidForm()}
+              type='submit'
+              onClick={() => {
+                dispatch({type: 'UPDATE_USER', user: {...globalState.forms, id: props.user.id}});
+                props.history.push('/users/' + props.user.id + '/view');
+              }}
+              className='btn btn-success'>Crear</button>
+
+            <Anchor className={'btn btn-secondary'} action={'home'} resource={'users'} text={'Cancelar'}/>
+          </div>
+        </div>
+        }
       </div>
     </form>
   );

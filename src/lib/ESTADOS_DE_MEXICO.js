@@ -1,4 +1,5 @@
 const ESTADOS_DE_MEXICO = [
+  '',
   'Distrito Federal',
   'Aguascalientes',
   'Baja California',
