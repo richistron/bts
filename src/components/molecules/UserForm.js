@@ -31,7 +31,7 @@ const UserForm = props => {
 
   const saveForm = event => {
     event.preventDefault();
-    
+
     if (!isObjectEqual(globalState.forms, props.user)) {
       dispatch({type: 'UPDATE_USER', user: {...globalState.forms, id: props.user.id}});
 
@@ -40,7 +40,6 @@ const UserForm = props => {
       }
       else {
         setState({showMessage: true});
-        setTimeout(() => setState({showMessage: false}), 5000);
       }
     }
   };
@@ -51,6 +50,17 @@ const UserForm = props => {
       {state.showMessage &&
       <div className='alert alert-success' role='alert'>
         Los cambios fueron guardados
+        <button
+          type='button'
+          className='close'
+          data-dismiss='alert'
+          aria-label='Close'
+          onClick={() =>{
+            setState({showMessage: false});
+          }}
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
       </div>
       }
 
@@ -119,7 +129,7 @@ const UserForm = props => {
             name={'sexo'}
             placeholder={'sexo'}
             type={'radio'}
-            options={[{value: 'M', text: 'Masculino'}, {value: 'H', text: 'Femenino'}]}
+            options={[{value: 'M', text: 'Masculino'}, {value: 'F', text: 'Femenino'}]}
             defaultValue={props.user.sexo || ''}
           />
         </fieldset>

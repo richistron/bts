@@ -1,13 +1,13 @@
 const USERS = [
   {
     id: 1,
-    nombre: 'Panchito',
-    apellido_paterno: 'López',
-    apellido_materno: 'Betancour',
+    nombre: 'Ricardo',
+    apellido_paterno: 'Rivas',
+    apellido_materno: 'González',
     fecha_de_nacimiento: '1984/11/14',
-    ciudad_de_nacimiento: 'Guadalajara',
-    estado_de_nacimiento: 'Jalisco',
-    sexo: 'Masculino',
+    ciudad_de_nacimiento: 'CDMX',
+    estado_de_nacimiento: 'Distrito Federal',
+    sexo: 'M',
   },
 ];
 

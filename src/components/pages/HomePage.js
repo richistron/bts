@@ -13,20 +13,22 @@ const HomePage = () => {
 
   return (
     <div className={'row'}>
-      {ui.tableViewOn ?
-        <UserList users={users} />
-        :
-        <ul className='col-md-10 list-group text-center'>
-          {Object.values(users).map( user => {
-            return (
-              <li key={user.id} className='list-group-item'>
-                &#x2B51;
-                <Anchor resource={'users'} id={user.id} action={'view'} text={fullName(user)}/>
-              </li>
-            );
-          })}
-        </ul>
-      }
+      <div className={'col-md-10'}>
+        {ui.tableViewOn ?
+          <UserList users={users} />
+          :
+          <ul className='list-group text-center'>
+            {Object.values(users).map( user => {
+              return (
+                <li key={user.id} className='list-group-item'>
+                  &#x2B51;
+                  <Anchor resource={'users'} id={user.id} action={'view'} text={fullName(user)}/>
+                </li>
+              );
+            })}
+          </ul>
+        }
+      </div>
 
       <div className={'col-md-2'}>
         <input
