@@ -9,7 +9,7 @@ const HomePage = () => {
   const {state: globalState, dispatch} = React.useContext(Context);
   const users = globalState.users || {};
   const ui = globalState.ui || {};
-  const [state, setState] = React.useState({checked: ui.tableViewOn || false});
+  const [state, setState] = React.useState({checked: ui.tableViewOn});
 
   return (
     <div className={'row'}>

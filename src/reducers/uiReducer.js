@@ -1,7 +1,9 @@
 import superStorage from '../lib/superStorage';
 
 const {get, set} = superStorage('ui');
-const initialState = get() || {};
+const initialState = get() || {
+  tableViewOn: true,
+};
 
 const uiReducer = (state, action) => {
   if (!state) {
